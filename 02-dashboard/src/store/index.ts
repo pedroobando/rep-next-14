@@ -1,11 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, Tuple } from '@reduxjs/toolkit';
 import counterSlice from './counter/counterSlice';
+import pokemonSlice from './pokemon/pokemonSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { localStorageMiddleware } from './middlewares/localstorate-middleware';
 
 export const store = configureStore({
   reducer: {
     counter: counterSlice,
+    pokemon: pokemonSlice,
   },
+  // middleware: () => new Tuple(localstoreMiddleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(localStorageMiddleware),
+
+  // ).concat(localstoreMiddleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
