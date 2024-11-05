@@ -6,7 +6,7 @@ import {
   IoHeartOutline,
   IoListOutline,
   IoAccessibilityOutline,
-  IoBrowsersOutline,
+  // IoBrowsersOutline,
   IoLogoReact,
 } from 'react-icons/io5';
 import { SidebarItem } from './SidebarItem';
@@ -29,8 +29,8 @@ const menuItems = [
   },
   {
     path: '/dashboard/personas',
-    title: 'Personas',
-    subtitle: 'Control Pokemos',
+    title: 'Persona',
+    subtitle: 'Compartir Store',
     icons: <IoAccessibilityOutline size={30} />,
   },
   {

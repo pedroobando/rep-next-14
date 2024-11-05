@@ -1,21 +1,24 @@
-'use client';
+import { Metadata } from 'next';
+import { BearsDisplay, BlackBears, PandaBears, PolarBears } from '@/components';
 
-import { useBearStore } from '@/stores';
+export const metadata: Metadata = {
+  title: 'Contador de Osos',
+  description: 'Control de estado',
+};
 
 export default function OsosPage() {
-  const { blackBears, increaseBlackBears } = useBearStore((state) => state);
-
-  const onIncreaseBlackBears = (by: number) => {
-    increaseBlackBears(by);
-  };
   return (
-    <div className="flex flex-col">
-      <h1 className="text-4xl text-black">Osos Page</h1>
-      <span className="my-2 text-2xl text-blue-900">{blackBears}</span>
+    <>
+      <h1 className="text-4xl my-2">Contador de Osos</h1>
+      <p className="text-xl">Manejo de estado simple de Zustand</p>
+      <hr className="my-4" />
 
-      <button className="w-[15rem] py-2 px-4 bg-gray-800 text-white rounded" onClick={() => onIncreaseBlackBears(1)}>
-        Incrementar Osos Black
-      </button>
-    </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+        <BlackBears />
+        <PolarBears />
+        <PandaBears />
+        <BearsDisplay />
+      </div>
+    </>
   );
 }

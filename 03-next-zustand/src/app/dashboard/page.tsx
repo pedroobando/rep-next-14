@@ -1,4 +1,5 @@
-import { WhiteCard } from '@/components';
+import { CardBears, CardPersonDash, WhiteCard } from '@/components';
+import { Metadata } from 'next';
 import {
   IoAccessibilityOutline,
   IoHeartOutline,
@@ -6,6 +7,13 @@ import {
   IoLockClosedOutline,
   IoPawOutline,
 } from 'react-icons/io5';
+
+// const CardBears = dynamic(() => import('@/components/bears/CardBears'), { ssr: false })
+
+export const metadata: Metadata = {
+  title: 'Inicio',
+  description: 'Control de estado',
+};
 
 export default function HomeDashboardPage() {
   // const totalBears = useBearStore((state) => state.totalBears);
@@ -19,17 +27,9 @@ export default function HomeDashboardPage() {
       <hr className="my-2" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        <WhiteCard centered>
-          <IoPawOutline size={50} className="text-indigo-600" />
-          <h2>Osos</h2>
-          {/* <p>{totalBears()}</p> */}
-        </WhiteCard>
+        <CardBears />
 
-        <WhiteCard centered>
-          <IoAccessibilityOutline size={50} className="text-indigo-600" />
-          <h2>Persona</h2>
-          {/* <p>{firtName}</p> */}
-        </WhiteCard>
+        <CardPersonDash />
 
         <WhiteCard centered>
           <IoListOutline size={50} className="text-indigo-600" />
