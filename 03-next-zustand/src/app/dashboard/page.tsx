@@ -1,12 +1,6 @@
 import { CardBears, CardPersonDash, WhiteCard } from '@/components';
 import { Metadata } from 'next';
-import {
-  IoAccessibilityOutline,
-  IoHeartOutline,
-  IoListOutline,
-  IoLockClosedOutline,
-  IoPawOutline,
-} from 'react-icons/io5';
+import { IoHeartOutline, IoListOutline, IoLockClosedOutline } from 'react-icons/io5';
 
 // const CardBears = dynamic(() => import('@/components/bears/CardBears'), { ssr: false })
 

@@ -1,6 +1,6 @@
 import { create, type StateCreator } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import { customSessionStorage } from '../custom/session.storage';
+// import { customSessionStorage } from '../custom/session.storage';
 
 interface PersonState {
   firstName: string;

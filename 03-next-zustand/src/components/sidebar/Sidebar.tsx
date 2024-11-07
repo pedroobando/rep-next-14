@@ -49,7 +49,7 @@ const menuItems = [
 
 export const Sidebar = () => {
   return (
-    <div
+    <aside
       id="menu"
       style={{ width: '400px' }}
       className="bg-gray-900 min-h-screen z-10 text-slate-300 w-64 left-0  overflow-y-scroll"
@@ -93,6 +93,6 @@ export const Sidebar = () => {
           icons={<IoLogOutOutline size={30} />}
         />
       </div>
-    </div>
+    </aside>
   );
 };
