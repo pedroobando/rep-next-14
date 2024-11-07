@@ -1,64 +1,61 @@
-// import { DragEvent, useState } from 'react';
-// import Swal from 'sweetalert2';
+'use client';
 
-// import { useTaskStore } from '../stores';
-// import { TaskStatus } from '../interfaces/task.interface';
-// // import { TaskStatus } from '../interfaces';
+import { DragEvent, useState } from 'react';
+import { useShallow } from 'zustand/shallow';
+import Swal from 'sweetalert2';
+import { TaskStatus } from '@/interfaces';
+import { useTaskStore } from '@/stores';
 
-// interface Options {
-//   status: TaskStatus;
-// }
+interface Options {
+  status: TaskStatus;
+}
 
-// export const useTasks = ({ status }: Options) => {
-//   const isDragging = useTaskStore((state) => !!state.draggingTaskId);
-//   const onTaskDrop = useTaskStore((state) => state.onTaskDrop);
-//   const addTask = useTaskStore((state) => state.addTask);
+export const useTasks = ({ status }: Options) => {
+  const { addTask, onTaskDrop } = useTaskStore(useShallow((store) => store));
+  const isDragging = useTaskStore(useShallow((store) => !!store.draggingTaskId));
+  const [onDragOver, setOnDragOver] = useState(false);
 
-//   const [onDragOver, setOnDragOver] = useState(false);
+  const handleOnDragOver = (event: DragEvent<HTMLElement>) => {
+    event.preventDefault();
+    setOnDragOver(true);
+  };
 
-//   const handleAddTask = async () => {
-//     const { isConfirmed, value } = await Swal.fire({
-//       title: 'Nueva tarea',
-//       input: 'text',
-//       inputLabel: 'Nombre de la tarea',
-//       inputPlaceholder: 'Ingrese el nombre de la tarea',
-//       showCancelButton: true,
-//       inputValidator: (value) => {
-//         if (!value) {
-//           return 'Debe de ingresar un nombre para la tarea';
-//         }
-//       },
-//     });
+  const handleOnDragLeave = (event: DragEvent<HTMLElement>) => {
+    event.preventDefault();
+    setOnDragOver(false);
+  };
 
-//     if (!isConfirmed) return;
-//     addTask(value, status);
-//   };
+  const handleOnDrop = (event: DragEvent<HTMLElement>) => {
+    event.preventDefault();
+    setOnDragOver(false);
+    onTaskDrop(status);
+  };
 
-//   const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
-//     event.preventDefault();
-//     setOnDragOver(true);
-//   };
+  const handleAddTask = async (status: TaskStatus) => {
+    const { isConfirmed, value } = await Swal.fire({
+      title: 'Nueva Tarea',
+      input: 'text',
+      inputLabel: 'Nombre de la tarea',
+      inputPlaceholder: 'Ingrese el nombre de la tarea',
+      showCancelButton: true,
+      inputValidator: (value) => {
+        if (!value) return 'Debe de ingresar un nombre para la tarea';
+      },
+    });
+    // console.log(newTask);
+    if (!isConfirmed) return;
+    addTask(value, status);
+  };
 
-//   const handleDragLeave = (event: DragEvent<HTMLDivElement>) => {
-//     event.preventDefault();
-//     setOnDragOver(false);
-//   };
+  return {
+    //? Property
+    isDragging,
+    onDragOver,
 
-//   const handleDrop = (event: DragEvent<HTMLDivElement>) => {
-//     event.preventDefault();
-//     setOnDragOver(false);
-//     onTaskDrop(status);
-//   };
-
-//   return {
-//     // Properties
-//     isDragging,
-
-//     // Methods
-//     onDragOver,
-//     handleAddTask,
-//     handleDragOver,
-//     handleDragLeave,
-//     handleDrop,
-//   };
-// };
+    //? Method
+    handleOnDragOver,
+    handleOnDragLeave,
+    handleOnDrop,
+    handleAddTask,
+  };
+};

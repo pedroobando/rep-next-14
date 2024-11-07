@@ -1,5 +1,5 @@
 import { create, StateCreator } from 'zustand';
-import { devtools } from 'zustand/middleware';
+import { devtools, persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 import { v4 as uuidv4 } from 'uuid';
 // import { produce } from 'immer';
@@ -18,15 +18,17 @@ interface ITaskState {
 
   changeTaskStatus: (taskId: string, status: TaskStatus) => void;
   onTaskDrop: (status: TaskStatus) => void;
+
+  taskCount: () => number;
 }
 
 const storeAPI: StateCreator<ITaskState, [['zustand/devtools', never], ['zustand/immer', never]]> = (set, get) => ({
   draggingTaskId: undefined,
   tasks: {
-    'ABC-1': { id: 'ABC-1', title: 'Task 1', status: 'open' },
-    'ABC-2': { id: 'ABC-2', title: 'Task 2', status: 'in-progress' },
-    'ABC-3': { id: 'ABC-3', title: 'Task 3', status: 'open' },
-    'ABC-4': { id: 'ABC-4', title: 'Task 4', status: 'open' },
+    // 'ABC-1': { id: 'ABC-1', title: 'Task 1', status: 'open' },
+    // 'ABC-2': { id: 'ABC-2', title: 'Task 2', status: 'in-progress' },
+    // 'ABC-3': { id: 'ABC-3', title: 'Task 3', status: 'open' },
+    // 'ABC-4': { id: 'ABC-4', title: 'Task 4', status: 'open' },
   },
 
   getTaskByStatus: (status: TaskStatus) => Object.values(get().tasks).filter((task) => task.status === status),
@@ -67,10 +69,12 @@ const storeAPI: StateCreator<ITaskState, [['zustand/devtools', never], ['zustand
   removeDraggingTaskId: () => set({ draggingTaskId: undefined }, false, 'removeDraggingTaskId'),
 
   changeTaskStatus: (taskId: string, status: TaskStatus) => {
-    const task = get().tasks[taskId];
+    //? Con middleware de immer da problemas
+    // const task = get().tasks[taskId];
+    const task = { ...get().tasks[taskId] };
     task.status = status;
 
-    //? Con immer middleware de zustand
+    // //? Con immer middleware de zustand
     set(
       (state) => {
         state.tasks[taskId] = task;
@@ -99,10 +103,20 @@ const storeAPI: StateCreator<ITaskState, [['zustand/devtools', never], ['zustand
     get().changeTaskStatus(taskId, status);
     get().removeDraggingTaskId();
   },
+
+  taskCount: (): number => {
+    const totalTareas = Object.values(get().tasks).length;
+    return totalTareas;
+  },
 });
 
 export const useTaskStore = create<ITaskState>()(
-  devtools(immer(storeAPI), {
-    name: 'Jira-Task',
-  }),
+  devtools(
+    persist(immer(storeAPI), {
+      name: 'task-store',
+    }),
+    {
+      name: 'Jira-Task',
+    },
+  ),
 );

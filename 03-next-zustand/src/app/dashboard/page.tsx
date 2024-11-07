@@ -1,4 +1,4 @@
-import { CardBears, CardPersonDash, WhiteCard } from '@/components';
+import { CardBears, CardJiraDash, CardPersonDash, WhiteCard } from '@/components';
 import { Metadata } from 'next';
 import { IoHeartOutline, IoListOutline, IoLockClosedOutline } from 'react-icons/io5';
 
@@ -24,6 +24,8 @@ export default function HomeDashboardPage() {
         <CardBears />
 
         <CardPersonDash />
+
+        <CardJiraDash />
 
         <WhiteCard centered>
           <IoListOutline size={50} className="text-indigo-600" />

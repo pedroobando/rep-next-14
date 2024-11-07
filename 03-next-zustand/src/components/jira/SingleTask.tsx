@@ -5,15 +5,14 @@ import { IoReorderTwoOutline } from 'react-icons/io5';
 import classNames from 'classnames';
 import { ITask } from '@/interfaces/task.interface';
 import { useTaskStore } from '@/stores';
+import { useShallow } from 'zustand/shallow';
 
 interface Props {
   task: ITask;
 }
 
 export const SingleTask: FC<Props> = ({ task }: Props) => {
-  const draggingTaskId = useTaskStore((store) => store.draggingTaskId);
-  const setDraggingTaskId = useTaskStore((state) => state.setDraggingTaskId);
-  const removeDraggingTaskId = useTaskStore((state) => state.removeDraggingTaskId);
+  const { draggingTaskId, setDraggingTaskId, removeDraggingTaskId } = useTaskStore(useShallow((store) => store));
 
   return (
     <div

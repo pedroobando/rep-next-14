@@ -1,13 +1,10 @@
-'use client';
-
-import { DragEvent, useState } from 'react';
 import { IoCheckmarkCircleOutline, IoClipboardOutline } from 'react-icons/io5';
 import classNames from 'classnames';
-import Swal from 'sweetalert2';
 
-import { useTaskStore } from '@/stores';
 import { ITask, TaskStatus } from '@/interfaces';
 import { SingleTask } from './SingleTask';
+
+import { useTasks } from '@/hooks';
 
 interface Props {
   title: string;
@@ -16,46 +13,12 @@ interface Props {
 }
 
 export const JiraTasks = ({ title, tasks, value }: Props) => {
-  const addTask = useTaskStore((store) => store.addTask);
-  const isDragging = useTaskStore((store) => !!store.draggingTaskId);
-  const onTaskDrop = useTaskStore((store) => store.onTaskDrop);
-  const [onDragOver, setOnDragOver] = useState(false);
-
-  const handleOnDragOver = (event: DragEvent<HTMLElement>) => {
-    event.preventDefault();
-    setOnDragOver(true);
-  };
-
-  const handleOnDragLeave = (event: DragEvent<HTMLElement>) => {
-    event.preventDefault();
-    setOnDragOver(false);
-  };
-
-  const handleOnDrop = (event: DragEvent<HTMLElement>) => {
-    event.preventDefault();
-    setOnDragOver(false);
-    onTaskDrop(value);
-  };
-
-  const handleAddTask = async (status: TaskStatus) => {
-    const { isConfirmed, value } = await Swal.fire({
-      title: 'Nueva Tarea',
-      input: 'text',
-      inputLabel: 'Nombre de la tarea',
-      inputPlaceholder: 'Ingrese el nombre de la tarea',
-      showCancelButton: true,
-      inputValidator: (value) => {
-        if (!value) return 'Debe de ingresar un nombre para la tarea';
-      },
-    });
-    // console.log(newTask);
-    if (!isConfirmed) return;
-    addTask(value, status);
-  };
+  const { handleAddTask, handleOnDragLeave, handleOnDragOver, handleOnDrop, isDragging, onDragOver } = useTasks({
+    status: value,
+  });
 
   return (
-    <section
-      id={`${title}`}
+    <div
       onDragOver={handleOnDragOver}
       onDragLeave={handleOnDragLeave}
       onDrop={handleOnDrop}
@@ -90,6 +53,6 @@ export const JiraTasks = ({ title, tasks, value }: Props) => {
           <SingleTask key={task.id} task={task} />
         ))}
       </div>
-    </section>
+    </div>
   );
 };

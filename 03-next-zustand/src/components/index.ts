@@ -9,3 +9,4 @@ export { CardPersonDash } from './person/CardPersonDash';
 
 export { JiraTasks } from './jira/JiraTasks';
 export { JiraGrid } from './jira/JiraGrid';
+export { CardJiraDash } from './jira/CardJiraDash';
