@@ -40,7 +40,7 @@ const menuItems = [
     icons: <IoListOutline size={30} />,
   },
   {
-    path: '/dashboard/boda',
+    path: '/dashboard/slices',
     title: 'Boda',
     subtitle: 'Invitados a la boda',
     icons: <IoHeartOutline size={30} />,

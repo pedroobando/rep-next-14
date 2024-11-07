@@ -1,4 +1,5 @@
-import { JiraGrid } from '@/components';
+// import { JiraGrid } from '@/components';
+import JiraGrid from '@/components/jira/JiraGrid';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

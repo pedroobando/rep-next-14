@@ -1,5 +1,6 @@
 import { create, type StateCreator } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
+import { customLocalStorage } from '../custom/local.storage';
 // import { customSessionStorage } from '../custom/session.storage';
 
 interface PersonState {
@@ -28,7 +29,9 @@ export const usePersonStore = create<PersonState & Actions>()(
   devtools(
     persist(storeAPI, {
       name: 'person-store',
+      // skipHydration: true,
       // storage: customSessionStorage, //* Storage Personalizado
+      // storage: customLocalStorage,
     }),
   ),
 );

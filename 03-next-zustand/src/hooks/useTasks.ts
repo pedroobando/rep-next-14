@@ -11,8 +11,8 @@ interface Options {
 }
 
 export const useTasks = ({ status }: Options) => {
-  const { addTask, onTaskDrop } = useTaskStore(useShallow((store) => store));
-  const isDragging = useTaskStore(useShallow((store) => !!store.draggingTaskId));
+  const { addTask, onTaskDrop } = useTaskStore((store) => store);
+  const isDragging = useTaskStore((store) => !!store.draggingTaskId);
   const [onDragOver, setOnDragOver] = useState(false);
 
   const handleOnDragOver = (event: DragEvent<HTMLElement>) => {

@@ -65,6 +65,8 @@ export const useBearStore = create<BearState>()(
       }),
       {
         name: 'bears-store',
+        //? skipHidratation, su funcion es no ejecutar la hydratacion del lado del servidor.
+        skipHydration: true,
       },
     ),
   ),

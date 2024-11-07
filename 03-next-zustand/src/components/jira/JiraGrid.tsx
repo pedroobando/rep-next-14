@@ -2,9 +2,10 @@
 
 import { JiraTasks } from './JiraTasks';
 import { useTaskStore } from '@/stores';
+import dynamic from 'next/dynamic';
 import { useShallow } from 'zustand/shallow';
 
-export const JiraGrid = () => {
+const JiraGrid = () => {
   const tasksOpen = useTaskStore(useShallow((store) => store.getTaskByStatus('open')));
   const tasksInProgress = useTaskStore(useShallow((store) => store.getTaskByStatus('in-progress')));
   const tasksDone = useTaskStore(useShallow((store) => store.getTaskByStatus('done')));
@@ -19,3 +20,6 @@ export const JiraGrid = () => {
     </div>
   );
 };
+
+// export default JiraGrid;
+export default dynamic(() => Promise.resolve(JiraGrid), { ssr: false });

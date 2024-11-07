@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const SingleTask: FC<Props> = ({ task }: Props) => {
-  const { draggingTaskId, setDraggingTaskId, removeDraggingTaskId } = useTaskStore(useShallow((store) => store));
+  const { draggingTaskId, setDraggingTaskId, removeDraggingTaskId } = useTaskStore((store) => store);
 
   return (
     <div
