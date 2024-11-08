@@ -12,3 +12,6 @@ export { CardPersonDash } from './person/CardPersonDash';
 export { JiraTasks } from './jira/JiraTasks';
 // export  JiraGrid  from './jira/JiraGrid';
 export { CardJiraDash } from './jira/CardJiraDash';
+export { InvitedPerson } from './wedding/InvitedPerson';
+export { InvitedGuest } from './wedding/InvitedGuest';
+export { InvitedDate } from './wedding/InvitedDate';
