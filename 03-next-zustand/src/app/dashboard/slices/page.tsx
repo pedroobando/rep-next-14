@@ -1,8 +1,8 @@
-import { InvitedDate, InvitedGuest, InvitedPerson, WhiteCard } from '@/components';
+import { InvitedConfirmed, InvitedDate, InvitedGuest, InvitedPerson, WhiteCard } from '@/components';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Invitacion de Boda',
+  title: 'Invitación de Boda',
   description: 'Zustand segmentado en slices',
   authors: { name: 'Pedro Obando', url: 'https://mercantil.com' },
 };
@@ -23,22 +23,12 @@ export default function WeddingInvitationPage() {
 
             <InvitedDate />
 
-            <div className="mb-5">
-              <label className="mb-3 block text-base font-medium text-[#07074D]">¿Tu también vendrás?</label>
-              <div className="flex items-center space-x-6">
-                <div className="flex items-center">
-                  <input type="radio" name="isComing" id="radioButton1" className="h-5 w-5" />
-                  <label className="pl-3 text-base font-medium text-[#07074D]">Si</label>
-                </div>
-                <div className="flex items-center">
-                  <input type="radio" name="isComing" id="radioButton2" className="h-5 w-5" />
-                  <label className="pl-3 text-base font-medium text-[#07074D]">No</label>
-                </div>
-              </div>
-            </div>
+            <InvitedConfirmed />
 
             <div>
-              <button>Enviar</button>
+              <button className="bg-blue-500 shadow-2xl px-4 py-2 rounded-3xl w-40 text-white font-bold hover:bg-blue-600 hover:animate-pulse">
+                Enviar
+              </button>
             </div>
           </form>
         </div>

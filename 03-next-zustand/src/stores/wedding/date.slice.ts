@@ -1,7 +1,7 @@
 import { StateCreator } from 'zustand';
 
 export interface IDateSlice {
-  eventDate: Date;
+  eventDate: number;
 
   eventYYYYMMDD: () => string;
   eventHHMM: () => string;
@@ -10,46 +10,53 @@ export interface IDateSlice {
   setEventTime: (eventTime: string) => void;
 }
 
-export const createDateSlice: StateCreator<IDateSlice> = (set, get) => ({
-  eventDate: new Date(),
+export const createDateSlice: StateCreator<IDateSlice, [['zustand/devtools', never]]> = (set, get) => ({
+  eventDate: new Date().getTime(),
 
   eventYYYYMMDD: () => {
-    return get().eventDate.toISOString().split('T')[0];
+    try {
+      const activeDate = new Date(get().eventDate);
+
+      return activeDate.toISOString().split('T')[0];
+    } catch (error) {
+      return new Date().toISOString().split('T')[0];
+    }
   },
 
   eventHHMM: () => {
-    const hours = get().eventDate.getHours().toString().padStart(2, '0');
-    const minutes = get().eventDate.getMinutes().toString().padStart(2, '0');
+    const activeDate = new Date(get().eventDate);
+    const hours = activeDate.getHours().toString().padStart(2, '0');
+    const minutes = activeDate.getMinutes().toString().padStart(2, '0');
 
     return `${hours}:${minutes}`;
   },
 
   setEventDate: (parcialDate: string) =>
-    set((state) => {
-      const date = new Date(parcialDate);
-
-      const year = date.getFullYear();
-      const month = date.getMonth();
-      const day = date.getDate() + 1;
-
-      const newDate = new Date(state.eventDate);
-      newDate.setFullYear(year, month, day);
-
-      return { eventDate: newDate };
-    }),
+    set(
+      (state) => {
+        const date = new Date(parcialDate);
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        const day = date.getDate() + 1;
+        const newDate = new Date(state.eventDate);
+        newDate.setFullYear(year, month, day);
+        return { eventDate: newDate.getTime() };
+      },
+      false,
+      'setEventDate',
+    ),
 
   setEventTime: (eventTime: string) =>
-    set((state) => {
-      //HH:MM
-
-      const hours = parseInt(eventTime.split(':')[0]);
-      const minutes = parseInt(eventTime.split(':')[1]);
-
-      // console.log({ hours, minutes });
-
-      const newDate = new Date(state.eventDate);
-      newDate.setHours(hours, minutes);
-      console.log({ newDate });
-      return { eventDate: new Date(newDate) };
-    }),
+    set(
+      (state) => {
+        //HH:MM
+        const hours = parseInt(eventTime.split(':')[0]);
+        const minutes = parseInt(eventTime.split(':')[1]);
+        const newDate = new Date(state.eventDate);
+        newDate.setHours(hours, minutes);
+        return { eventDate: newDate.getTime() };
+      },
+      false,
+      'setEventTime',
+    ),
 });

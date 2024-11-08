@@ -15,3 +15,4 @@ export { CardJiraDash } from './jira/CardJiraDash';
 export { InvitedPerson } from './wedding/InvitedPerson';
 export { InvitedGuest } from './wedding/InvitedGuest';
 export { InvitedDate } from './wedding/InvitedDate';
+export { InvitedConfirmed } from './wedding/InvitedConfirmed';
