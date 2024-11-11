@@ -1,8 +1,8 @@
-import { SimplePokemon } from '../interfaces/simple-pokemon';
+import { ISimplePokemon } from '../interfaces/simple-pokemon';
 import { PokemonCard } from './PokemonCard';
 
 interface Props {
-  pokemons: SimplePokemon[];
+  pokemons: ISimplePokemon[];
 }
 
 export const PokemonGrid = ({ pokemons }: Props) => {

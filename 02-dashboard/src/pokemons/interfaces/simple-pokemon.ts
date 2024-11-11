@@ -1,4 +1,4 @@
-export interface SimplePokemon {
+export interface ISimplePokemon {
   id: string;
   name: string;
 }

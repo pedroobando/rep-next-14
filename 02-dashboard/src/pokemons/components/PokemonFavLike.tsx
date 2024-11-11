@@ -6,10 +6,10 @@ import { IoHeart, IoHeartOutline } from 'react-icons/io5';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { toggleFavorite } from '@/store/pokemon/pokemonSlice';
 
-import { SimplePokemon } from '../interfaces/simple-pokemon';
+import { ISimplePokemon } from '../interfaces/simple-pokemon';
 
 interface Props {
-  pokemon: SimplePokemon;
+  pokemon: ISimplePokemon;
 }
 
 export const PokemonFavLike: FC<Props> = ({ pokemon }) => {

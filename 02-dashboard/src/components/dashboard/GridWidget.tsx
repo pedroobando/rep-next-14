@@ -2,7 +2,7 @@
 
 import { useAppSelector } from '@/store';
 import { SimpleWidget } from './SimpleWidget';
-import { IoCafeOutline, IoCalculator } from 'react-icons/io5';
+import { IoCalculator } from 'react-icons/io5';
 
 export const GridWidget = () => {
   const counter = useAppSelector((state) => state.counter.count);

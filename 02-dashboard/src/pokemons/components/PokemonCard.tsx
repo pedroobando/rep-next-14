@@ -1,14 +1,17 @@
-'use client';
-
 import Link from 'next/link';
-import { SimplePokemon } from '../interfaces/simple-pokemon';
+import { ISimplePokemon } from '../interfaces/simple-pokemon';
 import Image from 'next/image';
 
 import { PokemonFavLike } from './PokemonFavLike';
 
 interface Props {
-  pokemon: SimplePokemon;
+  pokemon: ISimplePokemon;
 }
+
+// const getApiPokemon = async (): Promise<CounterResponse> => {
+//   const data = await fetch('/api/pokemon').then((resp) => resp.json());
+//   return data;
+// };
 
 export const PokemonCard = ({ pokemon }: Props) => {
   return (

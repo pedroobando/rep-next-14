@@ -3,12 +3,12 @@
 import { useEffect, useState } from 'react';
 import { PokemonGrid } from './PokemonGrid';
 import { useAppSelector } from '@/store';
-import { SimplePokemon } from '../interfaces/simple-pokemon';
+import { ISimplePokemon } from '../interfaces/simple-pokemon';
 import { IoHeartOutline } from 'react-icons/io5';
 
 export const PokemonFavGrid = () => {
-  const [favPokemon, setFavPokemon] = useState<SimplePokemon[]>([]);
   const pokemonFav = useAppSelector((state) => Object.values(state.pokemon));
+  const [favPokemon, setFavPokemon] = useState<ISimplePokemon[]>([]);
 
   useEffect(() => {
     setFavPokemon(pokemonFav);

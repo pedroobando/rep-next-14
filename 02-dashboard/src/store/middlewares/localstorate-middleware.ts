@@ -11,5 +11,11 @@ export const localStorageMiddleware = (state: MiddlewareAPI) => {
       localStorage.setItem('favorite-pokemons', JSON.stringify(pokemon));
       return;
     }
+
+    // if (action.type.split('/')[0] === 'counter') {
+    //   const { counter } = state.getState() as RootState;
+    //   localStorage.setItem('counter-state', JSON.stringify(counter));
+    //   return;
+    // }
   };
 };

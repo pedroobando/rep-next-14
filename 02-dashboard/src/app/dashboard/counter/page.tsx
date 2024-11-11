@@ -14,7 +14,7 @@ export default function CounterPage() {
         Productos en el Carrito <IoBagCheck className="ml-2" width={30} height={30} />
       </span>
 
-      <CartCounter value={10} />
+      <CartCounter />
     </div>
   );
 }
