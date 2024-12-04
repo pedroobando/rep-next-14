@@ -8,14 +8,28 @@ Ana aplicacion apirest en next-js
 sudo docker compose up -d
 ```
 
-2.- Prisma Commands
+2.- Crear una copia de el .env.template y renombrarlo a .env
+3.- Reemplazar las variables de entorno
+4.- Ejecutar el comando `yarn install` para reconstruir los módulos de node
+5.- Ejecutar el comando `yarn dev` para ejecutar aplicación en desarrollo
+6.- Ejecutar estos comandos de Prisma
+
+```
+npx prisma migrate dev
+npx prisma generate
+```
+
+7.- Ejecutar el SEED para crear la base de datos local
+
+## Prisma Commands
+
 Guia de utlizacion de [prisma en next.js](https://vercel.com/guides/nextjs-prisma-postgres)
+Guia [prisma CLI](https://www.prisma.io/docs/orm/reference/prisma-cli-reference)
 
 ```
 - yarn add prisma
 - npx prisma init  /// <= crea los archivos de prisma en el proyecto
 - npx prisma migrate dev  /// <=> actualiza el modelo de la aplicacion con la base de datos (sincroniza)
 - npx prisma generate   /// <=> crea e cl cliente para poder utilizar prisma en la aplicacion
-
 
 ```
