@@ -55,3 +55,13 @@ export const POST = async (request: NextRequest) => {
     );
   }
 };
+
+export async function DELETE(request: NextRequest) {
+  const prisma = new PrismaClient();
+  try {
+    const todos = await prisma.todo.deleteMany({ where: { complete: true } });
+    return NextResponse.json({ todos }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ data: null, message: error }, { status: 400 });
+  }
+}

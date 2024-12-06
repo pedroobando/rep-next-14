@@ -5,14 +5,16 @@ import { IoCheckboxOutline, IoSquareOutline } from 'react-icons/io5';
 
 interface Props {
   todo: Todo;
+  toggleTodo: (id: string, complete: boolean) => Promise<Todo | void>;
   //TODO: Acciones que deseo llamar
 }
 
-export const TodosItem: FC<Props> = ({ todo }) => {
+export const TodosItem: FC<Props> = ({ todo, toggleTodo }) => {
   return (
     <div className={todo.complete ? styles.todoDone : styles.todoPending}>
       <div className="flex flex-col sm:flex-row justify-start items-center gap-4">
         <div
+          onClick={() => toggleTodo(todo.id, !todo.complete)}
           className={`flex p-2 rounded-md cursor-pointer hover:bg-opacity-60 ${
             todo.complete ? 'bg-blue-100' : 'bg-red-100'
           } `}

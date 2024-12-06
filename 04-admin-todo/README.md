@@ -33,3 +33,25 @@ Guia [prisma CLI](https://www.prisma.io/docs/orm/reference/prisma-cli-reference)
 - npx prisma generate   /// <=> crea e cl cliente para poder utilizar prisma en la aplicacion
 
 ```
+
+## Guia de Snipet nextjs
+
+Command Description
+
+```
+- prc 	Create a new page component.
+- lmrc  Create a new layout root component with metadata.
+- lrc   Create a new layout root component.
+- crc	  Create a new client component.
+- mr	  Create a new metadata.
+- gmrf	Create a new generateMetaData for SEO.
+- gsp	  Create a new generateStaticParams function for dynamic page static
+- rag	  Create a function Route Handler API GET.
+- ragd	Create a function Route Handler API GET with Dynamic.
+- rags	Create a function Route Handler API GET and Search.
+- rap	  Create a function Route Handler API POST.
+- rau	  Create a function Route Handler API UPDATE.
+- rad	  Create a function Route Handler API DELETE.
+- load	Create a Loading component
+- err	  Create a Error component with error handling and recovery
+```

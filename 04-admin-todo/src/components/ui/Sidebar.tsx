@@ -5,7 +5,6 @@ import {
   IoBookmarkOutline,
   IoCalendarOutline,
   IoListOutline,
-  IoLogOut,
   IoLogOutOutline,
 } from 'react-icons/io5';
 
@@ -23,7 +22,7 @@ const menuItems = [
     icons: <IoBookmarkOutline size={30} />,
   },
   {
-    path: '/dashboard/server-todo',
+    path: '/dashboard/server-todos',
     title: 'Server Actions',
     icons: <IoListOutline size={30} />,
   },
@@ -68,7 +67,7 @@ export const Sidebar: FC = () => {
 
       <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
         <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-          <IoLogOut />
+          <IoLogOutOutline />
           <span className="group-hover:text-gray-700">Logout</span>
         </button>
       </div>
