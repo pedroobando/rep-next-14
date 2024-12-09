@@ -55,3 +55,14 @@ Command Description
 - load	Create a Loading component
 - err	  Create a Error component with error handling and recovery
 ```
+
+## update npm
+
+Actualizar los paquetes de npm
+
+```
+npm install -g npm-check-updates
+ncu
+ncu -u
+npm install
+```
