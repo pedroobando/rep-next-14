@@ -4,30 +4,32 @@ import { FC, FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { IoTrashOutline } from 'react-icons/io5';
 import * as apiTodo from '@/todos/helpers/todos';
+import { createTodo, deleteCompleted } from '@/todos/actions/todo-actions';
 
 export const TodosNew: FC = () => {
   const [descriptionTodo, setDescriptionTodo] = useState<string>('');
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleOnSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (descriptionTodo.trim().length <= 0) return;
 
     try {
-      const newTodo = await apiTodo.createTodos(descriptionTodo);
+      const newTodo = await createTodo(descriptionTodo);
+      // const newTodo = await apiTodo.createTodos(descriptionTodo);
       console.log({ newTodo });
       setDescriptionTodo('');
-      router.refresh();
+      // router.refresh();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const deleteCompleted = async () => {
-    const totalTodos = await apiTodo.deleteTodosCompleted();
-    console.log(totalTodos);
-    router.refresh();
-  };
+  // const deleteCompleted = async () => {
+  //   const totalTodos = await apiTodo.deleteTodosCompleted();
+  //   console.log(totalTodos);
+  //   router.refresh();
+  // };
 
   return (
     <form className="flex w-full" onSubmit={handleOnSubmit}>
